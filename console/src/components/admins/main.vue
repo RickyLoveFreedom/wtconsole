@@ -166,6 +166,9 @@
                     <el-tooltip effect="dark" content="拥有风控权限" placement="top-start">
                         <el-radio v-model="curUser.role" label="risker">风控员</el-radio>
                     </el-tooltip>
+                    <el-tooltip effect="dark" content="拥有研究权限" placement="top-start">
+                        <el-radio v-model="curUser.role" label="researcher">研究员</el-radio>
+                    </el-tooltip>
                 </el-col>
             </el-row>
             <el-row>

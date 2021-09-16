@@ -28,7 +28,7 @@
                                         <span>控制台</span>
                                     </template>
                                     <el-menu-item-group>
-                                        <el-menu-item index="1-1" route="/monitor">
+                                        <el-menu-item index="1-1" route="/monitor" v-if="!isResearcher">
                                             <i class="el-icon-view"></i>
                                             <span>监控中心</span>
                                         </el-menu-item>
@@ -38,17 +38,17 @@
                                         </el-menu-item>
                                     </el-menu-item-group>
                                 </el-submenu>
-                                <el-submenu index="2" v-if="isAdmin">
+                                <el-submenu index="2">
                                     <template slot="title">
                                         <i class="el-icon-box"></i>
                                         <span>自动实施</span>
                                     </template>
                                     <el-menu-item-group>
-                                        <el-menu-item index="2-1" route="/deploy">
+                                        <el-menu-item index="2-1" route="/deploy" v-if="isAdmin">
                                             <i class="el-icon-thumb"></i>
                                             <span>策略部署</span>
                                         </el-menu-item>
-                                        <el-menu-item index="2-2" route="/backtest">
+                                        <el-menu-item index="2-2" route="/backtest" v-if="isResearcher">
                                             <i class="el-icon-data-line"></i>
                                             <span>在线回测</span>
                                         </el-menu-item>
@@ -210,6 +210,13 @@ export default {
             let uInfo = this.cache.userinfo;
             if(uInfo)
                 return (uInfo.role == 'admin' || uInfo.role == 'superman');
+            else
+                return false;        
+        },
+        isResearcher: function(){
+            let uInfo = this.cache.userinfo;
+            if(uInfo)
+                return (uInfo.role == 'researcher' || uInfo.role == 'superman');
             else
                 return false;        
         }
